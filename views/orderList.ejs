@@ -1,11 +1,13 @@
 <% include partials/header %>
 
-<center><h1>Order List</h1></center>
+<center>
+  <h1>Order List</h1>
+</center>
 
 <form class="ui form" action="/" method="POST">
   <div class="five wide field">
-      <h3>Location ID</h3>
-      <input type="text" name="location" placeholder="Location ID">
+    <h3>Location ID</h3>
+    <input type="text" name="location" placeholder="Location ID">
   </div>
   <button class="ui blue button">Get Orders List</button>
 </form>
@@ -13,9 +15,9 @@
 <table class="ui celled structured table">
   <thead>
     <tr>
-      <th rowspan="2">Order ID</th>
-      <th rowspan="2">Ticket ID</th>
-      <th colspan="3">Items</th>
+      <th class="four wide" rowspan="2">Order ID</th>
+      <th class="four wide" rowspan="2">Ticket ID</th>
+      <th class="eight wide" colspan="3">Items</th>
     </tr>
     <tr>
       <th>name</th>
@@ -23,21 +25,21 @@
     </tr>
   </thead>
   <tbody>
-    <% for(var i=0; i < 5; i++) { %>
+    <% for(var i=0; i < orderData.length; i++) { %>
     <tr>
-      <td ><%= orderData[i].orderID %></td>
-        <td ><%= orderData[i].tickets[0].id %> ticket</td>
-        <td>
-            <% for(var j=0; j < orderData[i].tickets[0].items.length; j++) { %>
-              <%= orderData[i].tickets[0].items[j].name %> <br>
-              <%} %>
-        </td>
-        <td>
-            <% for(var j=0; j < orderData[i].tickets[0].items.length; j++) { %>
-              <%= orderData[i].tickets[0].items[j].units %> <br>
-              <%} %>
-          </td>
-    
+      <td><%= orderData[i].orderID %></td>
+      <td><%= orderData[i].tickets[0].id %> ticket</td>
+      <td>
+        <% for(var j=0; j < orderData[i].tickets[0].items.length; j++) { %>
+        <%= orderData[i].tickets[0].items[j].name %> <br>
+        <%} %>
+      </td>
+      <td>
+        <% for(var j=0; j < orderData[i].tickets[0].items.length; j++) { %>
+        <%= orderData[i].tickets[0].items[j].units %> <br>
+        <%} %>
+      </td>
+
     </tr>
     <% } %>
   </tbody>
@@ -45,9 +47,8 @@
 
 
 <script>
-  // const getLocation = async () => {
-  //   var locationID = document.getElementById('location').value;
-  //   const response = window.location.replace(`http://localhost:5000/orders/${locationID}`);
-  // }
+  setTimeout(function () {
+    window.location.reload(1);
+  }, 5000);
 </script>
 <% include partials/footer %>
