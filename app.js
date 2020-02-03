@@ -2,7 +2,7 @@ const express = require('express');
 const app = express()
 const axios = require('axios');
 var bodyParser  = require("body-parser");
-
+var helperFunctions = require('./helperFunction')
 require('dotenv').config()
 
 app.use(bodyParser.urlencoded({extended: true}));
@@ -19,10 +19,12 @@ app.post('/', function (req, res) {
 
 app.get('/orders/:id', function (req, res) {
   var orderList = []
-  axios.get(`${process.env.API}/orderdata?location=${req.params.id}`)
+  axios.get(`${process.env.API_LOCAL}/orderdata?location=${req.params.id}`)
     .then(response => {
+      var orderData = helperFunctions.sortData(response.data)
+      // console.log(orderData)
       orderList = response.data
-      res.render("orderList", {orderData: orderList})
+      res.render("orderList", {orderData: orderData})
     })
     .catch(err => {
       console.log(err)

@@ -17,12 +17,15 @@
     <tr>
       <th class="four wide" rowspan="2">Order ID</th>
       <th class="four wide" rowspan="2">Ticket ID</th>
+      <th class="two wide" rowspan="2">Date</th>
+      <th class="two wide" rowspan="2">Time</th>
+      <th class="one wide" rowspan="2">Status</th>
       <th class="eight wide" colspan="3">Items</th>
     </tr>
     <tr>
       <th>name</th>
       <th>units</th>
-      <th>status</th>
+      <!-- <th>status</th> -->
     </tr>
   </thead>
   <tbody>
@@ -30,6 +33,9 @@
     <tr>
       <td><%= orderData[i].orderID %></td>
       <td><%= orderData[i].tickets[0].id %></td>
+      <td><%= orderData[i].date %></td>
+      <td><%= orderData[i].time %></td>
+      <td><%= orderData[i].status %></td> 
       <td>
         <% for(var j=0; j < orderData[i].tickets[0].items.length; j++) { %>
         <%= orderData[i].tickets[0].items[j].name %> <br>
@@ -40,7 +46,7 @@
         <%= orderData[i].tickets[0].items[j].units %> <br>
         <%} %>
       </td>
-      <td><button id='<%= i+1 %>' onclick="setPreparedFlag('<%= orderData[i].tickets[0].id %>', '<%= i+1 %>')" class="ui teal button" >Prepared</button></td>
+      <!-- <td><button id='<%= i+1 %>' onclick="setPreparedFlag('<%= orderData[i].tickets[0].id %>', '<%= i+1 %>')" class="ui teal button" >Prepared</button></td> -->
     </tr>
     <% } %>
   </tbody>
@@ -48,12 +54,12 @@
 
 
 <script>
-  setTimeout(function () {
-    window.location.reload(1);
-  }, 5000);
+  // setTimeout(function () {
+  //   window.location.reload(1);
+  // }, 5000);
 
   function setPreparedFlag (ticketID, i){
-    $.post(`${'<%= process.env.API %>'}/setpreparedflag`, {ticketID: ticketID}, function(data, status){
+    $.post(`${'<%= process.env.API_LOCAL %>'}/setpreparedflag`, {ticketID: ticketID}, function(data, status){
       console.log(status)
       $( `table tr:nth-child(${i})` ).css("background-color", "grey");
       $(`#${i}`).hide();
