@@ -59,7 +59,7 @@
   // }, 5000);
 
   function setPreparedFlag (ticketID, i){
-    $.post(`${'<%= process.env.API_LOCAL %>'}/setpreparedflag`, {ticketID: ticketID}, function(data, status){
+    $.post(`${'<%= process.env.API %>'}/setpreparedflag`, {ticketID: ticketID}, function(data, status){
       console.log(status)
       $( `table tr:nth-child(${i})` ).css("background-color", "grey");
       $(`#${i}`).hide();

@@ -19,7 +19,7 @@ app.post('/', function (req, res) {
 
 app.get('/orders/:id', function (req, res) {
   var orderList = []
-  axios.get(`${process.env.API_LOCAL}/orderdata?location=${req.params.id}`)
+  axios.get(`${process.env.API}/orderdata?location=${req.params.id}`)
     .then(response => {
       var orderData = helperFunctions.sortData(response.data)
       // console.log(orderData)
