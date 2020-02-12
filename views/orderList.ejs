@@ -4,6 +4,8 @@
   <h1>Kitchen Order Table</h1>
 </center>
 
+
+
 <form class="ui form" action="/" method="POST">
   <div class="five wide field">
     <h3>Location ID</h3>
@@ -12,15 +14,16 @@
   <button class="ui blue button">Get Orders List</button>
 </form>
 
+<!-- <div class="ui  container" ></div> -->
 <table class="ui celled structured table">
   <thead>
     <tr>
-      <th class="four wide" rowspan="2">Order ID</th>
-      <th class="four wide" rowspan="2">Ticket ID</th>
-      <th class="two wide" rowspan="2">Date</th>
-      <th class="two wide" rowspan="2">Time</th>
-      <th class="one wide" rowspan="2">Status</th>
-      <th class="eight wide" colspan="3">Items</th>
+      <th>Order ID</th>
+      <th>Ticket ID</th>
+      <th>Date</th>
+      <th>Time</th>
+      <th>Status</th>
+      <th>Items</th>
     </tr>
     <tr>
       <th>name</th>
@@ -35,7 +38,15 @@
       <td><%= orderData[i].tickets[0].id %></td>
       <td><%= orderData[i].date %></td>
       <td><%= orderData[i].time %></td>
-      <td><%= orderData[i].status %></td> 
+      <!-- <td><Chip color="primary" variant="outlined" size="small" label="Basic" /></td> -->
+      <% if(orderData[i].status == 1){ %>
+        <td class="center aligned"><a class="ui teal basic label">Delivered</a></td>
+      <% }else if(orderData[i].prepared == 1){ %>
+        <td class="center aligned"><a class="ui yellow basic label">Prepared</a></td>
+      <% }else if(orderData[i].accepted == 1){ %>
+        <td class="center aligned"><a class="ui blue basic label">Accepted</a></td>
+      <% } %>
+      <!-- <td><%= orderData[i].status %></td>  -->
       <td>
         <% for(var j=0; j < orderData[i].tickets[0].items.length; j++) { %>
         <%= orderData[i].tickets[0].items[j].name %> <br>
@@ -51,7 +62,7 @@
     <% } %>
   </tbody>
 </table>
-
+<!-- </div> -->
 
 <script>
   // setTimeout(function () {

@@ -6,7 +6,6 @@ function datewisesort(data){
 }
 
 module.exports.sortData = function (allData) { 
-    console.log(new Date(allData[0].datetime).getDate())
     var statusZero =[], statusOne = [];
 
     for (let index = 0; index < allData.length; index++) {
