@@ -21,9 +21,10 @@ app.get('/orders/:id', function (req, res) {
   var orderList = []
   axios.get(`${process.env.API}/orderdata?location=${req.params.id}`)
     .then(response => {
+      // console.log(response, "ress")
       var orderData = helperFunctions.sortData(response.data)
       // console.log(orderData)
-      orderList = response.data
+      // orderList = response.data
       res.render("orderList", {orderData: orderData})
     })
     .catch(err => {
