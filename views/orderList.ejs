@@ -50,6 +50,8 @@
         <td class="center aligned"><a class="ui yellow basic label">Prepared</a></td>
       <% }else if(orderData[i].accepted == 1){ %>
         <td class="center aligned"><a class="ui blue basic label">Accepted</a></td>
+      <% } else { %>
++       <td class="center aligned"><a class="ui red basic label">Pending</a></td>
       <% } %>
       <!-- <td><%= orderData[i].status %></td>  -->
       <td>
